@@ -1,12 +1,15 @@
 import React from 'react';
-import ProductList from './components/ProductList';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import ProductsPage from './components/ProductList';
 
-const App = () => {
+const theme = createTheme();
+
+function App() {
   return (
-    <div>
-      <ProductList company="AMZ" />
-    </div>
+    <ThemeProvider theme={theme}>
+      <ProductsPage />
+    </ThemeProvider>
   );
-};
+}
 
 export default App;
