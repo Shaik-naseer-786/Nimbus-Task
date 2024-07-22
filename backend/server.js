@@ -10,11 +10,11 @@ const categoriesRouter = require('./routes/categories');
 const companiesRouter = require('./routes/companies');
 const productsRouter = require('./routes/products');
 
-app.use('/categories', categoriesRouter);
-app.use('/companies', companiesRouter);
-app.use('/products', productsRouter);
+app.use('/api/categories', categoriesRouter);
+app.use('/api/companies', companiesRouter);
+app.use('/api/products', productsRouter);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

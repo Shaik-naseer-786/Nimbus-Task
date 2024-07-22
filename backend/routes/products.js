@@ -4,5 +4,4 @@ const handleRequest = require('../utils/handleRequest');
 
 router.get('/', (req, res) => handleRequest(req, res, '/products'));
 
-
 module.exports = router;

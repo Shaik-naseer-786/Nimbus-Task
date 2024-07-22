@@ -14,5 +14,4 @@ router.get('/:category/products', (req, res) => {
     handleRequest(req, res, endpoint);
 });
 
-
 module.exports = router;

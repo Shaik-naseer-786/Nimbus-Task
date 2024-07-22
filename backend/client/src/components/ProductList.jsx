@@ -57,19 +57,18 @@ function ProductsPage() {
 
         } catch (error) {
             console.error("Error fetching the data", error);
-            // Handle error state or display a message to the user
         }
     };
 
     const constructURL = () => {
-        let url = 'http://localhost:3000/products';
+        let url = '/api/products';
 
         if (companyName && categoryName) {
-            url = `http://localhost:3000/companies/${companyName}/categories/${categoryName}/products`;
+            url = `/api/companies/${companyName}/categories/${categoryName}/products`;
         } else if (companyName) {
-            url = `http://localhost:3000/companies/${companyName}/products`;
+            url = `/api/companies/${companyName}/products`;
         } else if (categoryName) {
-            url = `http://localhost:3000/categories/${categoryName}/products`;
+            url = `/api/categories/${categoryName}/products`;
         }
 
         const queryParams = [];
@@ -213,7 +212,7 @@ function ProductsPage() {
                         />
                     </ListItem>
                     <ListItem>
-                        <FormControl fullWidth>
+                    <FormControl fullWidth>
                             <InputLabel>Availability</InputLabel>
                             <Select
                                 value={availability}
@@ -239,31 +238,21 @@ function ProductsPage() {
                             </Select>
                         </FormControl>
                     </ListItem>
-                    <ListItem>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            onClick={() => { setCurrentPage(1); setDrawerOpen(false); }}
-                            fullWidth
-                        >
-                            Apply Filters
-                        </Button>
-                    </ListItem>
                 </List>
             </Drawer>
 
-            <Grid container spacing={4} justifyContent="center">
-                {currentProducts.map((product, idx) => (
-                    <Grid item xs={10} sm={6} md={4} key={idx}>
+            <Grid container spacing={3}>
+                {currentProducts.map((product) => (
+                    <Grid item xs={12} sm={6} md={4} key={product.id}>
                         <Item>
-                            <Image src={product.imageUrl} alt={product.productName} />
-                            <h2>{product.productName}</h2>
-                            <p>Company: {product.company}</p>
-                            <p>Category: {product.category}</p>
-                            <p>Discount: {product.discount}%</p>
+                            
+                            <h3>{product.productName}</h3>
+                            <p>Company: {product.company || 'N/A'}</p>
+                            <p>Category: {product.category || 'N/A'}</p>
                             <p>Price: ${product.price}</p>
-                            <p>Rating: {product.rating} stars</p>
+                            <p>Discount: {product.discount ? `${product.discount}%` : 'N/A'}</p>
                             <p>Availability: {product.availability}</p>
+                            <p>Rating: {product.rating}</p>
                         </Item>
                     </Grid>
                 ))}
@@ -273,8 +262,7 @@ function ProductsPage() {
                 count={Math.ceil(productsDataList.length / itemsPerPage)}
                 page={currentPage}
                 onChange={handlePageChange}
-                color="primary"
-                style={{ marginTop: '20px', display: 'flex', justifyContent: 'center' }}
+                style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}
             />
         </>
     );

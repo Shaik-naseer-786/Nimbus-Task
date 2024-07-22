@@ -9,12 +9,9 @@ router.get('/:company/categories/:category/products', (req, res) => {
     handleRequest(req, res, endpoint);
 });
 
-
-
 router.get('/:company/products', (req, res) => {
     const endpoint = `/companies/${req.params.company}/products`;
     handleRequest(req, res, endpoint);
 });
-
 
 module.exports = router;
